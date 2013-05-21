@@ -1,0 +1,29 @@
+<html>
+	<head>
+	</head>
+	<!-- Head Scripts if any -->
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<body>
+	<!-- Start the game by running require.js. ModuleLoader will run after require has.-->
+	
+	<div id='console'>
+
+	</div>
+
+	<script src="js/config/CLoader.js"></script>
+	<script src="js/libs/require.js" type="text/javascript"></script>
+	<script src="js/ModuleLoader.js" type="text/javascript"></script>
+	<script>
+		//Keep our program class here. Best shot we have ;)
+		var modloader = new ModuleLoader();
+		document.addEventListener("mod_finish",
+			function(){
+				var program = new Program();
+				program.init();
+			}
+		, true);
+		modloader.load();
+	</script>
+	<!-- Note: Don't add add any javascripts here. They can be loaded through the module loader in CLoader.js-->
+	</body>
+</html>

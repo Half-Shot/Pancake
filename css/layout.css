@@ -1,0 +1,25 @@
+body
+{
+	background: black;
+	color: black;
+}
+
+.Init
+{
+	color: green;
+}
+
+.conmsg
+{
+	color: white;
+	font-family: monospace;
+	font-size: 10px;
+	display: inline;
+}
+
+#console
+{
+	color: white;
+	font-family: monospace;
+	font-size: 10px;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="libs/|config/|modules/" kind="src" path=""/>
+	<classpathentry kind="src" path="config"/>
+	<classpathentry kind="src" path="libs"/>
+	<classpathentry kind="src" path="modules"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
