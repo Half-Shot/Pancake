@@ -1,1 +1,14 @@
 var CVER = 0.01;
+var basedir_js = "js/";
+var basedir_content = "content/";
+
+// initialize the sound manager 
+soundManager.url = 'soundManager2/'; 
+soundManager.flashVersion = 9; 
+soundManager.useHighPerformance = true; // reduces delays 
+ 
+// reduce the default 1 sec delay to 500 ms 
+soundManager.flashLoadTimeout = 500; 
+ 
+// mp3 is required by default, but we don't want any requirements 
+soundManager.audioFormats.mp3.required = false; 

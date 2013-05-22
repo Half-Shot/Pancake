@@ -3,17 +3,25 @@ function ModuleLoader(){
 	this.onFinished.initCustomEvent("mod_finish",true,true,null);
 	this.done = 0;
 	this.total = 0;
+	this.queue = new Array();
 }
-
-ModuleLoader.prototype.LoadedModule = function(name)
+var failedLoading = false;
+ModuleLoader.prototype.LoadModule = function(file)
 {
-	this.done++;
-	console.log("ModuleLoader.js> Loaded " + name + "(" + this.done + " of " + this.total + ")");
-	document.getElementById('console').innerHTML += "ModuleLoader.js> Loaded " + name + "(" + this.done + " of " + this.total + ")<br>";
-	if(this.done === this.total){
+	modloader.done++;
+	console.log("ModuleLoader.js> Loaded " + file + "(" + modloader.done + " of " + modloader.total + ")");
+	document.getElementById('console').innerHTML += "ModuleLoader.js> Loaded " + file + "(" + modloader.done + " of " + modloader.total + ")<br>";
+	if(modloader.done === modloader.total){
+	    if(!failedLoading){
 		console.log("Finished Loading.");
 		document.getElementById('console').innerHTML += "Finished Loading Code Files. Going to start the main program now.";
-		document.body.dispatchEvent(this.onFinished);
+		document.body.dispatchEvent(modloader.onFinished);
+		}
+		else
+		{
+		    console.log("Failed loading. Not continuing.");
+		    alert("Some files failed to load. This could be a disconnection or some files could not be found.");
+		}
 	}
 }
 
@@ -22,17 +30,11 @@ ModuleLoader.prototype.load = function()
 	console.log("ModuleLoader.js> Beginning loading of javascript files.")
 	this.total = req_core.length + req_libs.length + req_modules.length;
 	this.done = 0;
-
-	for (var i=0;i<req_libs.length;i++)
+        this.queue = this.queue.concat(req_libs,req_core,req_modules);
+    
+	for (var i=0;i<this.queue.length;i++)
 	{ 
-		require([req_libs[i]], this.LoadedModule(req_libs[i]));
-	}
-	for (var i=0;i<req_core.length;i++)
-	{ 
-		require([req_core[i]], this.LoadedModule(req_core[i]));
-	}
-	for (var i=0;i<req_modules.length;i++)
-	{ 
-		require([req_modules[i]], this.LoadedModule(req_modules[i]));
+	    var file = basedir_js + this.queue[i];
+	    $LAB.script(file).wait(this.LoadModule(file));
 	}
 }
