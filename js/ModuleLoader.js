@@ -9,9 +9,9 @@ var failedLoading = false;
 ModuleLoader.prototype.LoadModule = function(file)
 {
 	modloader.done++;
-	console.log("ModuleLoader.js> Loaded " + file + "(" + modloader.done + " of " + modloader.total + ")");
-	document.getElementById('console').innerHTML += "ModuleLoader.js> Loaded " + file + "(" + modloader.done + " of " + modloader.total + ")<br>";
-	if(modloader.done === modloader.total){
+	console.log("ModuleLoader.js> Loaded " + file + "(" + modloader.done + " of " + (modloader.total + 1) + ")");
+	document.getElementById('console').innerHTML += "ModuleLoader.js> Loaded " + file + "(" + modloader.done + " of " + (modloader.total + 1) + ")<br>";
+	if(modloader.done === (modloader.total + 1)){
 	    if(!failedLoading){
 		console.log("Finished Loading.");
 		document.getElementById('console').innerHTML += "Finished Loading Code Files. Going to start the main program now.";
@@ -35,6 +35,9 @@ ModuleLoader.prototype.load = function()
 	for (var i=0;i<this.queue.length;i++)
 	{ 
 	    var file = basedir_js + this.queue[i];
-	    $LAB.script(file).wait(this.LoadModule(file));
+	    $LAB.script(file);
+	    this.LoadModule(file)
 	}
+	$LAB.script(basedir_js + "Program.js");
+	this.LoadModule(basedir_js + "Program.js");
 }

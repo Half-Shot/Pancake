@@ -1,4 +1,5 @@
 //This file is loaded last, so we can safely know that all core modules have loaded. The game execution acutally starts at the bottom.
+$('#loading').hide();
 function Program()
 {
 	this.logger = new Logger();

@@ -15,12 +15,14 @@ var req_core = new Array();
 req_core.push("config/CGraphics.js");
 req_core.push("config/Config.js");
 req_core.push("config/CResources.js");
+
+req_core.push("Graphics.js");
 req_core.push("Logger.js");
-req_core.push("Client.js");
 req_core.push("PacketHandler.js");
 req_core.push("SoundSystem.js");
 req_core.push("Game.js");
-req_core.push("Program.js");
+//req_core.push("Program.js"); //Not needed, it loads last as it is dependant on EVERYTHING. See ModuleLoader.js
+req_core.push("Client.js");
 
 //--END OF REQUIRED
 
