@@ -14,4 +14,7 @@ var program = new Program(); //Start the main program.
 var game = new Game(); //Start the game class.
 program.logger.toConsole("Init","Program Started. Asset loading shall begin.");
 game.loadresources();
-game.draw();
+
+//The game has loaded, switch off console if not required.
+if(!devmode)
+	$('#console').hide();

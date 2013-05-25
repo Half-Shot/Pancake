@@ -31,19 +31,20 @@ ExampleModule.prototype.draw = function()
 	//Draw a red rectangle as a test.
 	//game.overlay.fillRectangle(new Rectangle(20,20,20,20),"#6600FF");
 	//Y
-	game.overlay.drawRectangle(new Rectangle(00,00,20,40),"#6600FF",1);
-	game.overlay.drawRectangle(new Rectangle(20,20,20,60),"#6600FF",1);
-	game.overlay.drawRectangle(new Rectangle(40,00,20,40),"#6600FF",1);
+	var rect = null;
+	rect = new Rectangle(00,00,20,40); game.overlay.drawRectangle(rect,"#6600FF",1); game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
+	rect = new Rectangle(20,20,20,60); game.overlay.drawRectangle(rect,"#6600FF",1); game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
+	rect = new Rectangle(40,00,20,40); game.overlay.drawRectangle(rect,"#6600FF",1); game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
 	//O
-	game.overlay.drawRectangle(new Rectangle(80,00,60,80),"#6600FF",1);
-	game.overlay.drawRectangle(new Rectangle(90,10,40,60),"#6600FF",1);
+	rect = new Rectangle(80,00,60,80); game.overlay.drawRectangle(rect,"#6600FF",1); game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
+	rect = new Rectangle(90,10,40,60); game.overlay.drawRectangle(rect,"#6600FF",1); //game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
 	//L
-	game.overlay.drawRectangle(new Rectangle(160,00,20,80),"#6600FF",1);
-	game.overlay.drawRectangle(new Rectangle(180,60,40,20),"#6600FF",1);
+	rect = new Rectangle(160,00,20,80); game.overlay.drawRectangle(rect,"#6600FF",1); game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
+	rect = new Rectangle(180,60,40,20); game.overlay.drawRectangle(rect,"#6600FF",1); game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
 
 	//O
-	game.overlay.drawRectangle(new Rectangle(240,00,60,80),"#6600FF",1);
-	game.overlay.drawRectangle(new Rectangle(250,10,40,60),"#6600FF",1);
+	rect = new Rectangle(240,00,60,80); game.overlay.drawRectangle(rect,"#6600FF",1); game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
+	rect = new Rectangle(260,10,40,60); game.overlay.drawRectangle(rect,"#6600FF",1); //game.overlay.drawImageSliced(rect,rect,dta_textures[0]);
 
 
 	

@@ -1,4 +1,4 @@
-var CVER = 0.01;
-var basedir_js = "js/";
-var basedir_content = "content/";
-
+var CVER = 0.01,
+    basedir_js = "js/",
+    basedir_content = "content/",
+    devmode = true;
