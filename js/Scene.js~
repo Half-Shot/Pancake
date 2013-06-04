@@ -1,0 +1,27 @@
+//TODO: Copy paste this scene and add your own to the game. 
+function Scene(smgr)
+{
+	this.tags = new Array("pregame","menu","game","exit");
+	this.entityManager = new EntityManager();
+	this.parent = smgr;
+}
+
+Scene.prototype.load = function()
+{
+
+}
+
+Scene.prototype.update = function()
+{
+
+}
+
+Scene.prototype.draw = function()
+{
+
+}
+
+Scene.prototype.unload = function()
+{
+
+}

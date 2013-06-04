@@ -30,7 +30,7 @@ ModuleLoader.prototype.load = function()
 	console.log("ModuleLoader.js> Beginning loading of javascript files.")
 	this.total = req_core.length + req_libs.length + req_modules.length;
 	this.done = 0;
-        this.queue = this.queue.concat(req_libs,req_core,req_modules,req_scenes);
+        this.queue = this.queue.concat(req_libs,req_core,req_modules);
     
 	for (var i=0;i<this.queue.length;i++)
 	{ 

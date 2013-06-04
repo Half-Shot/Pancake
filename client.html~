@@ -9,14 +9,14 @@
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
 	<body>
 	
-	<audio class="audiochannel"></audio>	
-	<audio class="audiochannel"></audio>
-	<audio class="audiochannel"></audio>
-	<audio class="audiochannel"></audio>
-	<audio class="audiochannel"></audio>
-	<audio class="audiochannel"></audio>
-	<audio class="audiochannel"></audio>
-	<audio class="audiochannel"></audio>
+	<audio id="channel1"></audio>	
+	<audio id="channel2"></audio>	
+	<audio id="channel3"></audio>	
+	<audio id="channel4"></audio>	
+	<audio id="channel5"></audio>	
+	<audio id="channel6"></audio>	
+	<audio id="channel7"></audio>	
+	<audio id="channel8"></audio>	
 
 	<div id='console' style="z-index: 0;"> <!-- Background console. Should overlay over everything if devmode = 1 -->
 	

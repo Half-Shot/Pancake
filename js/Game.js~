@@ -42,7 +42,7 @@ Game.prototype.loadresources = function() {
 			loadscreen.hide();
 			load_audio.pause();
 			program.logger.toConsole("Res","Loaded all resources. Good to go");
-			var chnl = game.soundManager.QueueSound("content/sounds/smb_test.ogg");
+			var chnl = this.soundManager.QueueSound("content/sounds/smb_test.ogg");
 			game.soundManager.PlaySound(chnl,true);
 				//Module loading
 				for (var i=0;i<modules.length;i++)
