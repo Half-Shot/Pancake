@@ -18,8 +18,7 @@
 	<audio class="audiochannel"></audio>
 	<audio class="audiochannel"></audio>
 
-	<div id='console' style="z-index: 0;"> <!-- Background console. Should overlay over everything if devmode = 1 -->
-	
+	<div id='console' style=" position: absolute; z-index: 5;"> <!-- Background console. Should overlay over everything if devmode = 1 -->
 	</div>
 	<div id='loading'>
 		<p style="position: relative; left:40%; top:30%;"><img src="content/loadscreen.gif"/><br>Currently loading your swag.</p>
@@ -27,6 +26,7 @@
 			 <source src="content/load.ogg" type="audio/ogg">
 		</audio>
 	</div>
+	<div id='fps' style="z-index: 6; position: absolute; right: 0px; top: 0px;">50fps</div>
 	<div id="touch" onmousehover="MPosUpdate">
 		<canvas id="overlay" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1;">
 		</canvas><!-- 2D overlay -->
