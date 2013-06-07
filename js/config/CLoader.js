@@ -20,7 +20,9 @@ req_core.push("Graphics.js");
 req_core.push("Logger.js");
 req_core.push("PacketHandler.js");
 req_core.push("SoundSystem.js");
-req_core.push("SceneManager.js")
+req_core.push("SceneManager.js");
+req_core.push("EntityManager.js");
+req_core.push("ResourceTypes.js");
 req_core.push("Game.js");
 //req_core.push("Program.js"); //Not needed, it loads last as it is dependant on EVERYTHING. See ModuleLoader.js
 req_core.push("Client.js");
@@ -28,7 +30,7 @@ req_core.push("Client.js");
 
 //Modules -- Enter module plugins here. Make sure to order them right or some modules will not load due to missing dependencies.
 var req_modules = new Array();
-req_modules.push("modules/ExampleModule.js");
+//req_modules.push("modules/ExampleModule.js");
 
 var modules = new Array();//Holds all the custom modules. 
 

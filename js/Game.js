@@ -1,13 +1,16 @@
-var game = new Game(); //Start the game class.
+var sceneManager = new SceneManager();
 function Game()
 {
 	this.overlay = new Overlay(); //Create a new 2D 'overlay'. If this is a 2D only game, this is your main view.
-	this.sceneManager = new SceneManager();
 	this.soundManager = new SoundManager();
 	this.frames = 0;
-        this.elapsed;
+    this.elapsed;
 	this.starttime = new Date().getTime();
 	this.fps
+	this.lastfps = 0;
+	this.averagefps
+	this.sceneManager = sceneManager;
+	sceneManager = undefined;
 }
 
 //When the game updates. This will eventually be placed into its own thread to run independently of the ui.
@@ -15,6 +18,7 @@ Game.prototype.update = function() {
     //FPS
     game.frames++;
     game.elapsed = (new Date().getTime() - game.starttime) + 1000;
+	game.lastfps = fps;
     game.fps = Math.floor(game.frames / Math.floor(game.elapsed / 1000));
     $('#fps').get(0).innerHTML = game.fps + "fps"
     for (var i=0;i<modules.length;i++)
@@ -41,8 +45,7 @@ Game.prototype.loadresources = function() {
 	loader.addProgressListener(function(e) { 
 		if(e.resource.img !== undefined){ //Its a image
 			program.logger.toConsole("Resource","Loaded image " + e.resource.tags.first);
-			name
-			dta_textures.push(e.resource.img);
+			dta_textures[e.resource.tags.first] = e.resource.img;
 		}
 	});
 	
@@ -51,8 +54,6 @@ Game.prototype.loadresources = function() {
 			loadscreen.hide();
 			load_audio.pause();
 			program.logger.toConsole("Res","Loaded all resources. Good to go");
-			var chnl = game.soundManager.QueueSound("content/sounds/smb_test.ogg");
-			game.soundManager.PlaySound(chnl,true);
 				//Module loading
 				for (var i=0;i<modules.length;i++)
 			    	{
@@ -61,6 +62,7 @@ Game.prototype.loadresources = function() {
 			    	}
 				game.sceneManager.load();
 				//Put this just after loading resources so that modules won't get any problems when preloading them.
+				game.sceneManager.changeScene("introduction-screen"); //Start the intro.
 			requestAnimationFrame(game.update); //Yes, its a hack but its my best idea without plowing into layers of threading.
 	});
 	loader.start(); 

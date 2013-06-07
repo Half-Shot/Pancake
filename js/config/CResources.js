@@ -16,17 +16,8 @@ var loader = new PxLoader();
 
 //Data Arrays
 var dta_snds = Array(); 
-var dta_textures = Array(); var names_textures = new Array();
+var dta_textures = Array();
 var dta_models = Array();
-
-function GrabTexture(name)
-{
-	var number = names_texture.indexOf(name);
-	if(number != -1)
-		return dta_textures[number];
-	else
-		program.logger.toConsole("Error","Texture " + name + " not found!");
-}
 
 //Texture Example
 //loader.add(new PxLoaderImage(basedir_content + 'textures' + 'file.png', 'name')); 
@@ -37,4 +28,6 @@ loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'pancake.jpg', 'pa
 loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'pancake.jpg', 'pancake'));
 loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'pancake.jpg', 'pancake'));
 loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'intro-screen.jpg', 'introscreen'));
+loader.add( new PxLoaderImage(basedir_content + 'textures/intro/' + 'C_01.png', 'CommodoreHome'));
+loader.add( new PxLoaderImage(basedir_content + 'textures/anim/' + 'explosion.png', 'Explosion'));
 //dta_snds.push(loader.add( new PxLoaderSound(basedir_content + 'sounds/' + 'smb_test.ogg', 'smbtest'))); 
