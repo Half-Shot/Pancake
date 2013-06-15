@@ -23,11 +23,12 @@ var dta_models = Array();
 //loader.add(new PxLoaderImage(basedir_content + 'textures' + 'file.png', 'name')); 
 //Sound Example
 //loader.add(new PxLoaderImage(basedir_content + 'textures' + 'file.png', 'name')); 
-//dta_textures.push();
+
 loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'pancake.jpg', 'pancake'));
 loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'pancake.jpg', 'pancake'));
 loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'pancake.jpg', 'pancake'));
 loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'intro-screen.jpg', 'introscreen'));
 loader.add( new PxLoaderImage(basedir_content + 'textures/intro/' + 'C_01.png', 'CommodoreHome'));
 loader.add( new PxLoaderImage(basedir_content + 'textures/anim/' + 'explosion.png', 'Explosion'));
+
 //dta_snds.push(loader.add( new PxLoaderSound(basedir_content + 'sounds/' + 'smb_test.ogg', 'smbtest'))); 

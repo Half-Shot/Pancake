@@ -3,8 +3,11 @@ function Texture(image,infofile)
 	this.activeFrame = 0;
 	this.frames;
 	this.frameSize;
+	this.updateEvery = 10;
 	this.image = image;
 	this.infofile = infofile;
+	this.totalframes = 0;
+	this.elapsed;
 }
 
 Texture.prototype.LoadFile = function()
@@ -17,19 +20,28 @@ Texture.prototype.LoadFile = function()
 	var json = JSON.parse(oReq.response);
 	this.frames = json.frames;
 	this.frameSize = new Rectangle(0,0,json.width,json.height);
+	this.updateEvery = Math.ceil( 1000 / json.fps );
+	this.framewaiting = false;
 }
 
 Texture.prototype.GetSourceRect = function ()
 {
-	
-	var rect = new Rectangle(this.activeFrame * this.frameSize.width,this.activeFrame * this.frameSize.height,this.frameSize.width,this.frameSize.height);
+	var rect = new Rectangle(this.activeFrame * this.frameSize.width,0,this.frameSize.width,this.frameSize.height);
 	
 	return rect;
 }
 
+Texture.prototype.Animate = function()
+{
+	if(!this.framewaiting){ 
+		setTimeout(Texture.prototype.Advance,this.updateEvery);
+		this.framewaiting = true;
+	}
+}
+
 Texture.prototype.Advance = function(by)
 {
-
+	this.totalframes++;
 	if(by == undefined)
 	{
 		this.activeFrame++;
@@ -43,5 +55,5 @@ Texture.prototype.Advance = function(by)
 	{
 		this.activeFrame = 0;
 	}
-	
+	this.framewaiting = false;
 }

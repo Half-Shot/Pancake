@@ -23,6 +23,7 @@ req_core.push("SoundSystem.js");
 req_core.push("SceneManager.js");
 req_core.push("EntityManager.js");
 req_core.push("ResourceTypes.js");
+req_core.push("Binding.js");
 req_core.push("Game.js");
 //req_core.push("Program.js"); //Not needed, it loads last as it is dependant on EVERYTHING. See ModuleLoader.js
 req_core.push("Client.js");

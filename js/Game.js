@@ -4,13 +4,15 @@ function Game()
 	this.overlay = new Overlay(); //Create a new 2D 'overlay'. If this is a 2D only game, this is your main view.
 	this.soundManager = new SoundManager();
 	this.frames = 0;
-    this.elapsed;
+    	this.elapsed;
 	this.starttime = new Date().getTime();
 	this.fps
 	this.lastfps = 0;
 	this.averagefps
 	this.sceneManager = sceneManager;
 	sceneManager = undefined;
+	this.binder = new Bindings();
+	this.binder.init();
 }
 
 //When the game updates. This will eventually be placed into its own thread to run independently of the ui.
@@ -18,7 +20,7 @@ Game.prototype.update = function() {
     //FPS
     game.frames++;
     game.elapsed = (new Date().getTime() - game.starttime) + 1000;
-	game.lastfps = fps;
+    game.lastfps = fps;
     game.fps = Math.floor(game.frames / Math.floor(game.elapsed / 1000));
     $('#fps').get(0).innerHTML = game.fps + "fps"
     for (var i=0;i<modules.length;i++)

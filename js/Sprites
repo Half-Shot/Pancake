@@ -1,0 +1,9 @@
+function Sprite(Texture)
+{
+	this.srctexture = Texture;
+	this.frames
+	this.frameSize	
+	
+}
+
+

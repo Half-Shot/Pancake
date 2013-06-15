@@ -19,7 +19,7 @@ IntroductionScene.prototype.load = function()
 	this.introsound = game.soundManager.QueueSound("content/sounds/smb_test.ogg");
 	this.explosion = new Texture(dta_textures["Explosion"],"content/textures/anim/explosion.info");
 	this.explosion.LoadFile();
-	game.binder.AddKeyBinding(function(){alert("Space!")},"Space","KeyPress");
+	
 }
 
 IntroductionScene.prototype.update = function()
@@ -31,7 +31,7 @@ IntroductionScene.prototype.update = function()
 	if(game.elapsed / 100 < 100)
 		this.imageslicer = Math.floor(game.elapsed / 100);
 	
-	this.explosion.Advance(); //Will advance to the specified framerate.
+	this.explosion.Animate(); //Will advance to the specified framerate.
 }
 
 IntroductionScene.prototype.draw = function()

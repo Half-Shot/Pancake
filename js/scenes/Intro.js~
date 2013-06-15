@@ -19,7 +19,7 @@ IntroductionScene.prototype.load = function()
 	this.introsound = game.soundManager.QueueSound("content/sounds/smb_test.ogg");
 	this.explosion = new Texture(dta_textures["Explosion"],"content/textures/anim/explosion.info");
 	this.explosion.LoadFile();
-	game.binder.AddKeyBinding(function(){alert("Space!")},"Space","KeyPress");
+	game.binder.AddKeyBinding(function(){alert("Space!")},"KeyPress","Space");
 }
 
 IntroductionScene.prototype.update = function()
