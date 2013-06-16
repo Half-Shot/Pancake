@@ -18,3 +18,14 @@ game.loadresources();
 //The game has loaded, switch off console if not required.
 if(!devmode)
 	$('#console').hide();
+
+function RandomNumberGenerator(min,max)
+{
+	var number = 0;
+	for(var i = 0; i < max || number < min; i++)
+	{
+		number = number + Math.round(Math.random());
+	}
+	
+	return number;
+}

@@ -58,7 +58,13 @@ Overlay.prototype.drawImage = function(rect,image)
 
 Overlay.prototype.drawTexture = function(rect,texture)
 {
-	this.drawImageSliced(texture.GetSourceRect(),rect,texture.image);
+	this.drawImage(rect,texture.image);
+}
+
+Overlay.prototype.drawSprite = function(rect,spr)
+{
+	this.drawImageSliced(spr.GetSourceRect(),rect,spr.texture.image);
+	this.drawImageSliced(spr.GetSourceRect(),rect,spr.texture.image);
 }
 
 Overlay.prototype.drawImageSliced = function(sRect,dRect,image)
