@@ -37,7 +37,39 @@ Bindings.prototype.KeyPress = function(args)
 		if(game.binder.KeyBind[i].KeyStr == Key && game.binder.KeyBind[i].Type == "KeyPress")
 		{
 			game.binder.KeyBind[i].Action();
-		}	
+		}
+
+	
+	}
+}
+
+Bindings.prototype.KeyUp = function(args)
+{
+	var key = args.keyCode || args.which;
+	var Key = game.binder.KeyToString(key);		
+	for (var i=0;i<game.binder.KeyBind.length;i++)
+	{
+		if(game.binder.KeyBind[i].KeyStr == Key && game.binder.KeyBind[i].Type == "KeyUp")
+		{
+			game.binder.KeyBind[i].Action();
+		}
+
+	
+	}
+}
+
+Bindings.prototype.KeyDown = function(args)
+{
+	var key = args.keyCode || args.which;
+	var Key = game.binder.KeyToString(key);		
+	for (var i=0;i<game.binder.KeyBind.length;i++)
+	{
+		if(game.binder.KeyBind[i].KeyStr == Key && game.binder.KeyBind[i].Type == "KeyDown")
+		{
+			game.binder.KeyBind[i].Action();
+		}
+
+	
 	}
 }
 

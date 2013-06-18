@@ -1,13 +1,11 @@
 //Texture class - Holds image data.
 function Texture(image,infofile)
 {
-	this.frames;
+	this.sets;
 	this.frameSize;
 	this.updateEvery = 10;
 	this.image = image;
 	this.infofile = infofile;
-	this.totalframes = 0;
-	this.animationset = 0;
 	this.totalanimations = 0;
 }
 
@@ -19,8 +17,8 @@ Texture.prototype.LoadFile = function()
 	oReq.overrideMimeType("application/json");
 	oReq.send();
 	var json = JSON.parse(oReq.response);
-	this.frames = json.frames;
-	this.totalanimations = json.animations;
+	this.sets = json.sets;
+	this.totalanimations = json.sets.length;
 	this.frameSize = new Rectangle(0,0,json.width,json.height);
 	this.updateEvery = Math.ceil( 1000 / json.fps );
 	this.framewaiting = false;
@@ -32,13 +30,14 @@ function Sprite(texture)
 	this.activeFrame = 0;
 	this.framewaiting = false;
 	this.updateEvery = texture.updateEvery;
-	this.set = 0;
+	this.setnumber = 0;
+	this.animationset = this.texture.sets[0];
 }
 
 
 Sprite.prototype.GetSourceRect = function ()
 {
-	var rect = new Rectangle(this.activeFrame * this.texture.frameSize.width,this.set * this.texture.frameSize.height,this.texture.frameSize.width,this.texture.frameSize.height);
+	var rect = new Rectangle(this.activeFrame * this.texture.frameSize.width,this.setnumber * this.texture.frameSize.height,this.texture.frameSize.width,this.texture.frameSize.height);
 	return rect;
 }
 
@@ -55,7 +54,6 @@ Sprite.prototype.Animate = function()
 
 Sprite.prototype.Advance = function(by)
 {
-	this.texture.totalframes++;
 	if(by == undefined)
 	{
 		this.activeFrame++;
@@ -65,9 +63,21 @@ Sprite.prototype.Advance = function(by)
 		this.activeFrame = this.activeFrame + by;
 	}
 	
-	if(this.activeFrame == this.texture.frames - 1)
+	if(this.activeFrame == this.animationset.frames - 1)
 	{
 		this.activeFrame = 0;
 	}
 	this.framewaiting = false;
+}
+
+Sprite.prototype.SwitchSet = function(name)
+{
+	for (var i=0;i<this.totalanimations;i++)
+	{
+		 if(this.texture.sets[i].name == name){
+			this.animationset = this.texture.sets[i];
+			this.activeFrame = 0;
+			this.setnumber = i;
+		 }
+	}	
 }

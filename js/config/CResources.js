@@ -31,4 +31,10 @@ loader.add( new PxLoaderImage(basedir_content + 'textures/' + 'intro-screen.jpg'
 loader.add( new PxLoaderImage(basedir_content + 'textures/intro/' + 'C_01.png', 'CommodoreHome'));
 loader.add( new PxLoaderImage(basedir_content + 'textures/anim/' + 'explosion.png', 'Explosion'));
 
+//Sandbox
+loader.add( new PxLoaderImage(basedir_content + 'textures/sandbox/' + 'bg.jpg', 'SB_Background'));
+loader.add( new PxLoaderImage(basedir_content + 'textures/sandbox/' + 'tileset.gif', 'SB_Tileset1'));
+loader.add( new PxLoaderImage(basedir_content + 'textures/sandbox/' + 'tank.gif', 'SB_Tank'));
+loader.add( new PxLoaderImage(basedir_content + 'textures/sandbox/' + 'gun.gif', 'SB_Gun'));
+loader.add( new PxLoaderImage(basedir_content + 'textures/sandbox/' + 'shell.gif', 'SB_Shell'));
 //dta_snds.push(loader.add( new PxLoaderSound(basedir_content + 'sounds/' + 'smb_test.ogg', 'smbtest'))); 

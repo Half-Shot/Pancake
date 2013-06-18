@@ -65,6 +65,7 @@ Game.prototype.loadresources = function() {
 				game.sceneManager.load();
 				//Put this just after loading resources so that modules won't get any problems when preloading them.
 				game.sceneManager.changeScene("introduction-screen"); //Start the intro.
+				game.sceneManager.changeScene("test-bed",3000);
 			requestAnimationFrame(game.update); //Yes, its a hack but its my best idea without plowing into layers of threading.
 	});
 	loader.start(); 
@@ -74,6 +75,7 @@ Game.prototype.loadresources = function() {
 };
 
 Game.prototype.draw = function() {
+	game.overlay.clear();
 	//TODO:	Add in draw code.
 	for (var i=0;i<modules.length;i++)
 	{

@@ -38,5 +38,5 @@ var modules = new Array();//Holds all the custom modules.
 //Scenes
 var req_scenes = new Array();
 req_scenes.push("scenes/Intro.js");
-
+req_scenes.push("scenes/Sandbox.js");
 var scenes = new Array();

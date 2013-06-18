@@ -1,0 +1,11 @@
+{
+	"fps"		: 1,
+	"width" 	: 48,
+	"height" 	: 48,
+	"sets":
+	[
+		{"frames" : 5, "name" : "tileset1"},
+		{"frames" : 5, "name" : "tileset1"}
+	]
+	
+}

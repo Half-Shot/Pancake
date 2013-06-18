@@ -51,9 +51,17 @@ SceneManager.prototype.unload = function()
 
 //Please use this instead of direct changes.
 //Allows the stages to load and unload if they so desire.
-SceneManager.prototype.changeScene = function(newStage)
+SceneManager.prototype.changeScene = function(newStage,timer)
 {
-	this.unload();
-	this.stage = newStage;
-	this.load();	
+	if(timer != undefined)
+	{
+		setTimeout(function(){ game.sceneManager.changeScene(newStage) },timer);
+	}
+	else
+	{
+		this.unload();
+		this.stage = newStage;
+		this.load();
+	}
+		
 }
