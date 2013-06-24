@@ -19,33 +19,26 @@ IntroductionScene.prototype.load = function()
 	this.introsound = game.soundManager.QueueSound("content/sounds/smb_test.ogg");
 	this.explosion = new Texture(dta_textures["Explosion"],"content/textures/anim/explosion.info");
 	this.explosion.LoadFile();
-	this.sprlist = new Array();
-	this.sprlist.push(new Sprite(this.explosion));  this.sprlist[0].texture.updateEvery = 10;
-	this.sprlist.push(new Sprite(this.explosion));  this.sprlist[1].texture.updateEvery = 20;
-	this.sprlist.push(new Sprite(this.explosion));  this.sprlist[2].texture.updateEvery = 30;
-	this.sprlist.push(new Sprite(this.explosion));  this.sprlist[3].texture.updateEvery = 40;
-	this.sprlist.push(new Sprite(this.explosion));  this.sprlist[4].texture.updateEvery = 50;
-	
-	game.binder.AddKeyBinding(function(){plrrect.x--;},"LeftArrow","KeyPress");
-	game.binder.AddKeyBinding(function(){plrrect.x++;},"RightArrow","KeyPress");
-	game.binder.AddKeyBinding(function(){plrrect.y--;},"UpArrow","KeyPress");
-	game.binder.AddKeyBinding(function(){plrrect.y++;},"DownArrow","KeyPress");
+	this.spr = new Sprite(this.explosion);
+	this.rectspr = new Rectangle(32,32,64,64);
+	this.holelist = new Array();
 }
 
 IntroductionScene.prototype.update = function()
 {
 	this.entityManager.update();
-	if(!game.soundManager.channels[this.introsound].ended){}
-		//game.soundManager.PlaySound(this.introsound,true);
+	game.soundManager.PlaySound(this.introsound,true);
 	
 	if(game.elapsed / 100 < 100)
 		this.imageslicer = Math.floor(game.elapsed / 100);
-	
-	this.sprlist[0].Animate(); //Will advance to the specified framerate.
-	this.sprlist[1].Animate();
-	this.sprlist[2].Animate();
-	this.sprlist[3].Animate();
-	this.sprlist[4].Animate();
+	this.spr.Animate();
+	if(this.spr.activeFrame > 2)
+	{
+		this.holelist.push( new Rectangle(this.rectspr.x,this.rectspr.y,this.rectspr.width,this.rectspr.height));
+		this.spr.activeFrame = 0;
+		this.rectspr.x = RandomNumberGenerator(0,game.overlay.width) - (this.rectspr.x / 10);
+		this.rectspr.y = RandomNumberGenerator(0,game.overlay.height) + (this.rectspr.y / 10);
+	}
 }
 
 IntroductionScene.prototype.draw = function()
@@ -60,11 +53,16 @@ IntroductionScene.prototype.draw = function()
 	game.overlay.fillRectangle(new Rectangle(overlayunit_w * 2,overlayunit_h * 2,overlayunit_w * 16,overlayunit_h * 16),new Color(120,120,205),"");
 	game.overlay.drawImageSliced(new Rectangle(0,0,dta_textures["CommodoreHome"].width,(dta_textures["CommodoreHome"].height / 100) * this.imageslicer),new Rectangle(overlayunit_w * 2,overlayunit_h * 2,overlayunit_w * 16,(dta_textures["CommodoreHome"].height / 100) * this.imageslicer),dta_textures["CommodoreHome"]);
 
-	game.overlay.drawSprite(plrrect,this.sprlist[0]);
+	game.overlay.drawSprite(this.rectspr,this.spr);
+	for (var i=0;i<this.holelist.length;i++)
+	{
+		game.overlay.fillRectangle(this.holelist[i],new Color(0,0,0),"");
+	}
 }
 
 IntroductionScene.prototype.unload = function()
 {
+	game.soundManager.RemoveSound(this.introsound);
 	this.entityManager.unload();
 }
 

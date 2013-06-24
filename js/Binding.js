@@ -1,6 +1,35 @@
 function Mouse()
 {
+	this.pos = new Rectangle(0,0,5,5);
+	this.LeftButton = false;
+	this.RightButton = false;
+	this.MiddleButton = false;
+	this.updatePos = function(args){ game.binder.Mouse.pos.x = args.clientX; game.binder.Mouse.pos.y = args.clientY; };	
+	this.updateButtonsDown = function(args){
+	switch(args.button)
+	{
+		case 0:
+			LeftButton = true;
+		case 1:
+			MiddleButton = true;
+		case 2:
+			RightButton = true;	
+	}
+	program.logger.toConsole("InputEvent","MouseDown :" + args.button + "; Pos" + args.clientX + "," + args.clientY);
+	};	
 
+	this.updateButtonsUp = function(args){
+	switch(args.button)
+	{
+		case 0:
+			LeftButton = false;
+		case 1:
+			MiddleButton = false;
+		case 2:
+			RightButton = false;	
+	}
+	program.logger.toConsole("InputEvent","MouseUp :" + args.button);
+	};
 }
 
 function binding(action, string, type)
@@ -20,6 +49,9 @@ function Bindings()
 		$(window).keyup(this.KeyUp);
 		$(window).keydown(this.KeyDown);
 		$(window).keypress(this.KeyPress);
+		$(window).mousemove(this.Mouse.updatePos);
+		$(window).mousedown(this.Mouse.updateButtonsDown);
+		$(window).mouseup(this.Mouse.updateButtonsUp);
 	}
 }
 

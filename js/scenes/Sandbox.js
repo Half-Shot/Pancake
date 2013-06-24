@@ -28,16 +28,35 @@ SandboxScene.prototype.load = function()
 	this.rectangles["Tank"] = new Rectangle(0,game.overlay.height - 72,48,24);
 	this.rectangles["TankGun"] = new Rectangle(18,game.overlay.height - 72 + 5,24,7);
 	//Bind Tank Controls
-	game.binder.AddKeyBinding(function(){playerx = playerx - 4; playerS = -1;},"LeftArrow","KeyDown");
-	game.binder.AddKeyBinding(function(){playerx = playerx + 4; playerS = 1;},"RightArrow","KeyDown");
+	game.binder.AddKeyBinding(function(){game.sceneManager.active[0].playerV.x = game.sceneManager.active[0].playerV.x - 0.3; playerS = -1;},"LeftArrow","KeyDown");
+	game.binder.AddKeyBinding(function(){game.sceneManager.active[0].playerV.x = game.sceneManager.active[0].playerV.x + 0.3; playerS = 1;},"RightArrow","KeyDown");
 	this.shellv = new Vector2(0,0);
+	this.playerV = new Vector2(0,0);
 }
-var playerx = 0;
 var playerS = 1;
 SandboxScene.prototype.update = function()
 {
-	this.rectangles["Tank"].x = playerx;
-	this.rectangles["TankGun"].x = playerx + 18;
+	this.rectangles["Tank"].x = this.rectangles["Tank"].x + this.playerV.x;
+	this.rectangles["TankGun"].x = this.rectangles["Tank"].x + 18;
+	this.t_text_pos = new Vector2(this.rectangles["Tank"].x, this.rectangles["Tank"].y - 20);
+	
+	if(this.playerV.x < 0)
+		this.playerV.x = this.playerV.x + 0.1;
+	
+	if(this.playerV.x > 0)
+		this.playerV.x = this.playerV.x - 0.1;
+
+	if(this.playerV.x < 0.1 && this.playerV.x > -0.1)
+		this.playerV.x = 0;
+	
+	if(this.playerV.x > 10)
+		this.playerV.x = 10;
+
+	if(this.playerV.x < -10)
+		this.playerV.x = -10;
+
+	if(game.binder.Mouse.LeftButton)
+		alert("You clicked my Tank!");
 }
 
 SandboxScene.prototype.draw = function()
@@ -49,6 +68,7 @@ SandboxScene.prototype.draw = function()
 		game.overlay.drawSprite(new Rectangle(i,game.overlay.height - 48,48,48),this.tiles[0]);
 	}
 	game.overlay.drawTexture(this.rectangles["Tank"],this.T_tank,0,playerS,1);
+	game.overlay.drawText(this.t_text_pos,"bold 12px sans-serif","X:" + this.playerV.x + " Y:" + this.playerV.y);
 	game.overlay.drawTexture(this.rectangles["TankGun"],this.T_gun,0,playerS,1,2,2);
 }
 

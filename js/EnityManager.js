@@ -48,7 +48,7 @@ this.prototype.unload = function()
 //Allows the stages to load and unload if they so desire.
 this.prototype.changeScene = function(newStage)
 {
-	this.unload():
+	this.unload();
 	this.stage = newStage;
 	this.load();	
 }
